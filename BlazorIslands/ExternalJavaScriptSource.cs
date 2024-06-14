@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Http;
 
-namespace BlazorIslands.Features;
+namespace BlazorIslands;
 
 /// <summary>
 /// Represents an external JavaScript source to inject into the rendered HTML.

@@ -1,6 +1,5 @@
 using BlazorIslands;
 using BlazorIslands.Components;
-using BlazorIslands.Features;
 
 var builder = WebApplication.CreateSlimBuilder(args);
 builder.Services.AddRazorComponents();

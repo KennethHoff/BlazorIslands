@@ -1,4 +1,4 @@
-namespace BlazorIslands.Features;
+namespace BlazorIslands;
 
 public interface IJavaScriptSourceFeature
 {

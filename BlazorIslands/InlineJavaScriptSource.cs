@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Http;
 
-namespace BlazorIslands.Features;
+namespace BlazorIslands;
 
 // TODO: Add support for nonces (OWASP)
 

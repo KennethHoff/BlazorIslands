@@ -1,5 +1,3 @@
-using System.Text.Encodings.Web;
-using BlazorIslands.Features;
 using Microsoft.AspNetCore.Http;
 
 namespace BlazorIslands;
@@ -7,7 +5,7 @@ namespace BlazorIslands;
 /// <summary>
 /// A middleware that injects JavaScript sources into the rendered HTML.
 /// </summary>
-public sealed class BlazorIslandsMiddleware : IMiddleware
+internal sealed class BlazorIslandsMiddleware : IMiddleware
 {
     public async Task InvokeAsync(HttpContext context, RequestDelegate next)
     {

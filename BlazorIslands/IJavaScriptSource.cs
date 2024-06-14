@@ -1,7 +1,7 @@
 using System.IO.Pipelines;
 using Microsoft.AspNetCore.Http;
 
-namespace BlazorIslands.Features;
+namespace BlazorIslands;
 
 /// <summary>
 /// Represents a JavaScript source to inject into the rendered HTML.

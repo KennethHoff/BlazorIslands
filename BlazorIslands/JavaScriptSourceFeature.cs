@@ -1,4 +1,4 @@
-namespace BlazorIslands.Features;
+namespace BlazorIslands;
 
 /// <summary>
 /// An HttpContext `Feature` that provides a way to inject JavaScript source code into the rendered HTML.

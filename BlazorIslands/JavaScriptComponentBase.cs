@@ -1,8 +1,7 @@
-using BlazorIslands.Features;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Http;
 
-namespace BlazorIslands.Components;
+namespace BlazorIslands;
 
 public abstract class JavaScriptComponentBase : ComponentBase
 {
