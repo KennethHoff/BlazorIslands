@@ -4,18 +4,18 @@ namespace BlazorIslands.Features;
 
 // TODO: Add support for nonces (OWASP)
 
-public sealed class InlineJavaScriptSource(string source) : IJavaScriptSource
+public sealed class InlineJavaScriptSource(string code) : IJavaScriptSource
 {
-    private readonly string _source = source;
+    private readonly string _code = code;
 
     public Task WriteToAsync(HttpContext context)
     {
-        return context.Response.WriteAsync($"""<script type="module">{_source}</script>""");
+        return context.Response.WriteAsync($"""<script type="module">{_code}</script>""");
     }
 
     public bool Equals(IJavaScriptSource? other)
     {
-        return other is InlineJavaScriptSource inline && _source == inline._source;
+        return other is InlineJavaScriptSource inline && _code == inline._code;
     }
 
     public override bool Equals(object? obj)
@@ -25,6 +25,6 @@ public sealed class InlineJavaScriptSource(string source) : IJavaScriptSource
 
     public override int GetHashCode()
     {
-        return _source.GetHashCode();
+        return _code.GetHashCode();
     }
 }
