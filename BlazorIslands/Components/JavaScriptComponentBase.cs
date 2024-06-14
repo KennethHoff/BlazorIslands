@@ -1,20 +1,23 @@
 using BlazorIslands.Features;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Http;
 
 namespace BlazorIslands.Components;
 
 public abstract class JavaScriptComponentBase : ComponentBase
 {
     [Inject]
-    protected IJavaScriptSourceFeature JavaScriptSourceFeature { get; set; } = null!;
+    protected IHttpContextAccessor HttpContextAccessor { get; init; } = default!;
 
     /// <inheritdoc />
     protected override void OnInitialized()
     {
         base.OnInitialized();
+
+        var feature = HttpContextAccessor.HttpContext!.Features.Get<IJavaScriptSourceFeature>()!;
         foreach (var javaScriptSource in JavaScriptSources)
         {
-            JavaScriptSourceFeature.AddSource(javaScriptSource);
+            feature.AddSource(javaScriptSource);
         }
     }
 
