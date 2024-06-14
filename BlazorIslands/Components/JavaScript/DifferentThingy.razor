@@ -1,0 +1,19 @@
+@using BlazorIslands.Features
+<div>
+    <p>A different thingy</p>
+    <div class="text-amber-500" id="different-thingy">This text should be replaced by JavaScript.</div>
+</div>
+
+@code
+{
+    [Inject] IHttpContextAccessor HttpContextAccessor { get; init; } = null!;
+
+    protected override void OnInitialized()
+    {
+        Console.WriteLine("Thingy.razor OnInitialized() called.");
+        if (HttpContextAccessor.HttpContext!.Features.Get<JavaScriptSourceFeature>() is { } javascriptSrcFeature)
+        {
+            javascriptSrcFeature.AddSource(new JavaScriptSource("different-thingy.js"));
+        }
+    }
+}
