@@ -43,6 +43,9 @@ public sealed class JavaScriptSourceMiddleware : IMiddleware
     /// <param name="context">The current <see cref="HttpContext"/>.</param>
     /// <param name="feature">The <see cref="JavaScriptSourceFeature"/> to extract the sources from.</param>
     /// <exception cref="FileNotFoundException">Thrown when a source file does not exist.</exception>
+    /// <remarks>
+    /// Doesn't really work.. lol
+    /// </remarks>
     private static async Task AddInlineScript(HttpContext context, JavaScriptSourceFeature feature)
     {
         // Load the content of all the sources
