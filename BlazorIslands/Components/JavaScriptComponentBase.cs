@@ -8,6 +8,7 @@ public abstract class JavaScriptComponentBase : ComponentBase
     [Inject]
     protected IJavaScriptSourceFeature JavaScriptSourceFeature { get; set; } = null!;
 
+    /// <inheritdoc />
     protected override void OnInitialized()
     {
         base.OnInitialized();
