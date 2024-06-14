@@ -7,14 +7,7 @@ public sealed class JavaScriptSourceMiddleware : IMiddleware
 {
     public async Task InvokeAsync(HttpContext context, RequestDelegate next)
     {
-        if (context.Features.Get<JavaScriptSourceFeature>() is null)
-        {
-            context.Features.Set(new JavaScriptSourceFeature());
-        }
-
         await next(context);
-
-        Console.WriteLine("Injecting JavaScript sources into the rendered HTML...");
 
         if (context.Features.Get<JavaScriptSourceFeature>() is { } feature)
         {

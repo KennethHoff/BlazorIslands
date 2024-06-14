@@ -6,14 +6,10 @@
 
 @code
 {
-    [Inject] IHttpContextAccessor HttpContextAccessor { get; init; } = null!;
+    [Inject] IJavaScriptSourceFeature JavaScriptSourceFeature { get; init; } = null!;
 
     protected override void OnInitialized()
     {
-        Console.WriteLine("Thingy.razor OnInitialized() called.");
-        if (HttpContextAccessor.HttpContext!.Features.Get<JavaScriptSourceFeature>() is { } javascriptSrcFeature)
-        {
-            javascriptSrcFeature.AddSource(new JavaScriptSource("thingy.js"));
-        }
+        JavaScriptSourceFeature.AddSource(new JavaScriptSource("thingy.js"));
     }
 }
