@@ -1,3 +1,4 @@
+using System.Text.Encodings.Web;
 using BlazorIslands.Features;
 using Microsoft.AspNetCore.Http;
 
@@ -45,9 +46,7 @@ public sealed class BlazorIslandsMiddleware : IMiddleware
 
         foreach (var source in feature.Sources)
         {
-            await context.Response.WriteAsync(
-                $"""<script src="{source.Source}" type="module"></script>"""
-            );
+            await source.WriteToAsync(context);
         }
     }
 }

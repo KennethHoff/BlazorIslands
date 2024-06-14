@@ -1,0 +1,12 @@
+@using BlazorIslands.Features
+@inherits JavaScriptComponentBase
+
+<div data-inlined-thingy>Default text for inline Thingy</div>
+@code {
+
+    protected override IEnumerable<IJavaScriptSource> JavaScriptSources { get; } =
+    [
+        new InlineJavaScriptSource("document.querySelector('[data-inlined-thingy]').textContent = 'New text from inline JavaScript.';"),
+    ];
+
+}

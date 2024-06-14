@@ -13,6 +13,6 @@
     protected override void OnInitialized()
     {
         var feature = HttpContextAccessor.HttpContext!.Features.Get<IJavaScriptSourceFeature>()!;
-        feature.AddSource(new JavaScriptSource("thingy.js"));
+        feature.AddSource(new ExternalJavaScriptSource("thingy.js"));
     }
 }

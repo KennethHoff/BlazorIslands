@@ -5,7 +5,7 @@ public interface IJavaScriptSourceFeature
     /// <summary>
     /// Gets a read-only set of JavaScript sources to inject into the rendered HTML.
     /// </summary>
-    IReadOnlySet<JavaScriptSource> Sources { get; }
+    IReadOnlySet<IJavaScriptSource> Sources { get; }
 
     /// <summary>
     /// Adds a JavaScript source to the set of sources to inject into the rendered HTML.
@@ -15,5 +15,5 @@ public interface IJavaScriptSourceFeature
     /// <remarks>
     /// Will not add the source if it already exists in the list.
     /// </remarks>
-    void AddSource(JavaScriptSource source);
+    void AddSource(IJavaScriptSource source);
 }

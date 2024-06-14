@@ -8,8 +8,8 @@
 
 @code
 {
-    protected override IEnumerable<JavaScriptSource> JavaScriptSources { get; } =
+    protected override IEnumerable<IJavaScriptSource> JavaScriptSources { get; } =
     [
-        new JavaScriptSource("thingy.js")
+        new ExternalJavaScriptSource("thingy.js")
     ];
 }

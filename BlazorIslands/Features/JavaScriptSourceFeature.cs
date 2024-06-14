@@ -5,11 +5,11 @@ namespace BlazorIslands.Features;
 /// </summary>
 internal sealed class JavaScriptSourceFeature : IJavaScriptSourceFeature
 {
-    private readonly HashSet<JavaScriptSource> _sources = [];
+    private readonly HashSet<IJavaScriptSource> _sources = [];
 
-    public IReadOnlySet<JavaScriptSource> Sources => _sources;
+    public IReadOnlySet<IJavaScriptSource> Sources => _sources;
 
-    public void AddSource(JavaScriptSource source)
+    public void AddSource(IJavaScriptSource source)
     {
         _sources.Add(source);
     }

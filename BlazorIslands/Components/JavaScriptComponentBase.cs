@@ -24,5 +24,5 @@ public abstract class JavaScriptComponentBase : ComponentBase
     /// <summary>
     /// Defines which JavaScript sources to add to the rendered HTML.
     /// </summary>
-    protected abstract IEnumerable<JavaScriptSource> JavaScriptSources { get; }
+    protected abstract IEnumerable<IJavaScriptSource> JavaScriptSources { get; }
 }
