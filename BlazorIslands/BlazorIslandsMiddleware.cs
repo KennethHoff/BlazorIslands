@@ -1,9 +1,13 @@
-namespace BlazorIslands.Features;
+using BlazorIslands.Features;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace BlazorIslands;
 
 /// <summary>
 /// A middleware that injects JavaScript sources into the rendered HTML.
 /// </summary>
-public sealed class JavaScriptSourceMiddleware : IMiddleware
+public sealed class BlazorIslandsMiddleware : IMiddleware
 {
     public async Task InvokeAsync(HttpContext context, RequestDelegate next)
     {
@@ -25,7 +29,7 @@ public sealed class JavaScriptSourceMiddleware : IMiddleware
     {
         foreach (var source in feature.Sources)
         {
-            await context.Response.WriteAsync($"<script src=\"{source.Source}\"></script>");
+            await context.Response.WriteAsync($"<script src=\"{source.Source}\" defer></script>");
         }
     }
 

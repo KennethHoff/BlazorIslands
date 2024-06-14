@@ -1,1 +1,0 @@
-document.querySelector('#thingy').innerHTML = 'thingy.js';
