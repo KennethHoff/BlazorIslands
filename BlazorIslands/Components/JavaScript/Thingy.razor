@@ -1,3 +1,4 @@
+@inherits JavaScriptComponentBase
 @using BlazorIslands.Features
 <div>
     <p>Thingy</p>
@@ -6,10 +7,8 @@
 
 @code
 {
-    [Inject] IJavaScriptSourceFeature JavaScriptSourceFeature { get; init; } = null!;
-
-    protected override void OnInitialized()
-    {
-        JavaScriptSourceFeature.AddSource(new JavaScriptSource("thingy.js"));
-    }
+    protected override IEnumerable<JavaScriptSource> JavaScriptSources { get; } =
+    [
+        new JavaScriptSource("thingy.js")
+    ];
 }

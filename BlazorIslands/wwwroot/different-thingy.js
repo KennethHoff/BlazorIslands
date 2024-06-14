@@ -1,2 +1,5 @@
-document.querySelector('#different-thingy').innerHTML = 'different-thingy.js';
-document.querySelector('#thingy').innerHTML = 'cheeky';
+let DifferentThingies = document.querySelectorAll('[data-different-thingy]');
+
+DifferentThingies.forEach((thingy, index) => {
+    thingy.innerHTML = `Different Thingy #${index+1}/${DifferentThingies.length}`;
+});

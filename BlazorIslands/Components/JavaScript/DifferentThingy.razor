@@ -1,15 +1,14 @@
+@inherits JavaScriptComponentBase
 @using BlazorIslands.Features
 <div>
     <p>A different thingy</p>
-    <div class="text-amber-500" id="different-thingy">This text should be replaced by JavaScript.</div>
+    <div class="text-amber-500" data-different-thingy>This text should be replaced by JavaScript.</div>
 </div>
 
 @code
 {
-    [Inject] IJavaScriptSourceFeature JavaScriptSourceFeature { get; init; } = null!;
-
-    protected override void OnInitialized()
-    {
-        JavaScriptSourceFeature.AddSource(new JavaScriptSource("different-thingy.js"));
-    }
+    protected override IEnumerable<JavaScriptSource> JavaScriptSources { get; } =
+    [
+        new JavaScriptSource("different-thingy.js")
+    ];
 }
