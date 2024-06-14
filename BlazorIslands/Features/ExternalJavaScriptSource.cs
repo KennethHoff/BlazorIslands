@@ -5,7 +5,7 @@ namespace BlazorIslands.Features;
 /// <summary>
 /// Represents an external JavaScript source to inject into the rendered HTML.
 /// </summary>
-/// <param name="source">The URI of the JavaScript source.</param>
+/// <param name="source">The URI of the JavaScript source. Has to be a relative URI.</param>
 public sealed class ExternalJavaScriptSource(string source) : IJavaScriptSource
 {
     private readonly string _source = EnsureLocalUri(source);
