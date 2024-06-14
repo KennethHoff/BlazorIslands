@@ -16,7 +16,7 @@ builder.Services.AddScoped<IJavaScriptSourceFeature>(provider =>
         );
     }
 
-    if (httpContext.Features.Get<JavaScriptSourceFeature>() is { } feature)
+    if (httpContext.Features.Get<IJavaScriptSourceFeature>() is { } feature)
     {
         return feature;
     }

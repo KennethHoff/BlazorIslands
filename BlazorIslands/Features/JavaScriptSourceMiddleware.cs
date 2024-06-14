@@ -9,7 +9,7 @@ public sealed class JavaScriptSourceMiddleware : IMiddleware
     {
         await next(context);
 
-        if (context.Features.Get<JavaScriptSourceFeature>() is { } feature)
+        if (context.RequestServices.GetRequiredService<IJavaScriptSourceFeature>() is { } feature)
         {
             await AddScriptTag(context, feature);
             // await AddInlineScript(context, feature);
@@ -20,8 +20,8 @@ public sealed class JavaScriptSourceMiddleware : IMiddleware
     /// Adds a script tag for each JavaScript source.
     /// </summary>
     /// <param name="context">The current <see cref="HttpContext"/>.</param>
-    /// <param name="feature">The <see cref="JavaScriptSourceFeature"/> to extract the sources from.</param>
-    private static async Task AddScriptTag(HttpContext context, JavaScriptSourceFeature feature)
+    /// <param name="feature">The <see cref="IJavaScriptSourceFeature"/> to extract the sources from.</param>
+    private static async Task AddScriptTag(HttpContext context, IJavaScriptSourceFeature feature)
     {
         foreach (var source in feature.Sources)
         {
@@ -34,12 +34,12 @@ public sealed class JavaScriptSourceMiddleware : IMiddleware
     /// This is done by loading the content of each source and injecting it into the rendered HTML.
     /// </summary>
     /// <param name="context">The current <see cref="HttpContext"/>.</param>
-    /// <param name="feature">The <see cref="JavaScriptSourceFeature"/> to extract the sources from.</param>
+    /// <param name="feature">The <see cref="IJavaScriptSourceFeature"/> to extract the sources from.</param>
     /// <exception cref="FileNotFoundException">Thrown when a source file does not exist.</exception>
     /// <remarks>
     /// Doesn't really work.. lol
     /// </remarks>
-    private static async Task AddInlineScript(HttpContext context, JavaScriptSourceFeature feature)
+    private static async Task AddInlineScript(HttpContext context, IJavaScriptSourceFeature feature)
     {
         // Load the content of all the sources
         var content = await Task.WhenAll(
