@@ -25,3 +25,9 @@ tags to the end of the HTML document (... after the `<html>` tag :> )
     1. Call `builder.Services.AddBlazorIslands();` in your `Program.cs` file.
 2. Add the `BlazorIslands` middleware to your `IApplicationBuilder`.
     1. Call `app.UseBlazorIslands();` in your `Program.cs` file.
+3. Add JavaScript sources to the `IJavaScriptSourceFeature` feature.
+    1. This can be done in three main ways:
+        1. By injecting the `HttpContext` (or `IHttpContextAccessor`), retreiving the `IJavaScriptSourceFeature` and
+           adding sources to it, by calling `context.Features.Get<IJavaScriptSourceFeature>().AddSource(...)`.
+        2. By injecting the `IJavaScriptSourceFeature`, and then calling `AddSource(...)` on it.
+        3. By creating a Razor Component that inherits from `JavaScriptComponentBase` and overriding the `JavaScriptSources` property.
