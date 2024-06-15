@@ -1,6 +1,6 @@
 namespace BlazorIslands;
 
-public interface IJavaScriptSourceFeature
+public interface IBlazorIslandsFeature
 {
     /// <summary>
     /// Gets a read-only set of JavaScript sources to inject into the rendered HTML.
@@ -11,7 +11,7 @@ public interface IJavaScriptSourceFeature
     /// Adds a JavaScript source to the set of sources to inject into the rendered HTML.
     /// </summary>
     /// <param name="source">The source to add.</param>
-    /// <returns>The current instance of the <see cref="JavaScriptSourceFeature"/>.</returns>
+    /// <returns>The current instance of the <see cref="BlazorIslandsFeature"/>.</returns>
     /// <remarks>
     /// Will not add the source if it already exists in the list.
     /// </remarks>

@@ -10,11 +10,18 @@ app.UseBlazorIslands();
 
 // Example of adding a JavaScript source to the rendered HTML, using middleware.
 app.Use(
-    (context, next) =>
+    async (context, next) =>
     {
-        var jsSourceFeature = context.Features.Get<IJavaScriptSourceFeature>();
-        jsSourceFeature?.AddSource(new ExternalJavaScriptSource("middleware.js"));
-        return next();
+        await next();
+
+        // If the feature is not available, create a new instance and add it to the context
+        if (context.Features.Get<IBlazorIslandsFeature>() is not { } blazorIslandsFeature)
+        {
+            blazorIslandsFeature = new BlazorIslandsFeature();
+            context.Features.Set(blazorIslandsFeature);
+        }
+
+        blazorIslandsFeature.AddSource(new ExternalJavaScriptSource("middleware.js"));
     }
 );
 

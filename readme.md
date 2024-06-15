@@ -15,8 +15,8 @@ interface.
 ## How it works
 
 It works by adding
-a `JavaScriptSourceFeature` [Feature](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/request-features?view=aspnetcore-8.0)
-to the `HttpContext.Features` collection, which is then used by the `JavaScriptSourceMiddleware` to append `<script>`
+a `BlazorIslandsFeature` [Feature](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/request-features?view=aspnetcore-8.0)
+to the `HttpContext.Features` collection, which is then used by the `BlazorIslandsMiddleware` to append `<script>`
 tags to the end of the HTML document (... after the `<html>` tag :> )
 
 ## How to use
@@ -30,6 +30,10 @@ tags to the end of the HTML document (... after the `<html>` tag :> )
         1. By creating a Razor Component that inherits from `JavaScriptComponentBase` and overriding
            the `JavaScriptSources` property.
             * This is the most idiomatic way to use `BlazorIslands`.
+            * This will automatically add the `IBlazorIslandsFeature` to the `HttpContext.Features` collection.
         2. By accessing the `IJavaScriptSourceFeature` from the `HttpContext.Features` collection, and then calling
            `AddSource(...)` on it.
            * This is useful for when you need to add JavaScript sources from a service or other non-component class.
+           * This will not automatically add the `IBlazorIslandsFeature` to the `HttpContext.Features` collection, so you
+             will need to do that manually.
+           * Keep in mind that you need to ensure that you only add it to requests that are actually Blazor SSR requests, which I'm not sure how to do yet.

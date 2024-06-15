@@ -10,7 +10,7 @@
 
     protected override void OnInitialized()
     {
-        var feature = HttpContextAccessor.HttpContext!.Features.Get<IJavaScriptSourceFeature>()!;
+        var feature = HttpContextAccessor.HttpContext!.Features.Get<IBlazorIslandsFeature>()!;
         feature.AddSource(new ExternalJavaScriptSource("thingy.js"));
     }
 }

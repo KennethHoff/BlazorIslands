@@ -13,7 +13,13 @@ public abstract class JavaScriptComponentBase : ComponentBase
     {
         base.OnInitialized();
 
-        var feature = HttpContextAccessor.HttpContext!.Features.Get<IJavaScriptSourceFeature>()!;
+        var feature = HttpContextAccessor.HttpContext!.Features.Get<IBlazorIslandsFeature>();
+        if (feature is null)
+        {
+            feature = new BlazorIslandsFeature();
+            HttpContextAccessor.HttpContext.Features.Set(feature);
+        }
+
         foreach (var javaScriptSource in JavaScriptSources)
         {
             feature.AddSource(javaScriptSource);

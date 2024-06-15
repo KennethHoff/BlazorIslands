@@ -9,39 +9,21 @@ internal sealed class BlazorIslandsMiddleware : IMiddleware
 {
     public async Task InvokeAsync(HttpContext context, RequestDelegate next)
     {
-        EnsureFeature(context);
-
         await next(context);
 
-        await InjectJavaScriptSources(context);
-    }
-
-    private static void EnsureFeature(HttpContext context)
-    {
-        if (context.Features.Get<IJavaScriptSourceFeature>() is not null)
+        if (context.Features.Get<IBlazorIslandsFeature>() is not { } feature)
         {
             return;
         }
 
-        var feature = new JavaScriptSourceFeature();
-        context.Features.Set<IJavaScriptSourceFeature>(feature);
+        await InjectJavaScriptSources(context, feature);
     }
 
-    private static async Task InjectJavaScriptSources(HttpContext context)
+    private static async Task InjectJavaScriptSources(
+        HttpContext context,
+        IBlazorIslandsFeature feature
+    )
     {
-        // if not 200 OK, do not inject the JavaScript sources
-        if (context.Response.StatusCode != StatusCodes.Status200OK)
-        {
-            return;
-        }
-
-        if (context.Features.Get<IJavaScriptSourceFeature>() is not { } feature)
-        {
-            throw new InvalidOperationException(
-                "The JavaScriptSourceFeature is not available in the current HTTP context."
-            );
-        }
-
         foreach (var source in feature.Sources)
         {
             await source.WriteToAsync(context);
