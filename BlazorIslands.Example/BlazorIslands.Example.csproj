@@ -2,7 +2,5 @@
   <PropertyGroup>
     <RootNamespace>BlazorIslands</RootNamespace>
   </PropertyGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BlazorIslands\BlazorIslands.csproj" />
-  </ItemGroup>
+  
 </Project>

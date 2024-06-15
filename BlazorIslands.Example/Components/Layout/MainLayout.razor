@@ -1,3 +1,7 @@
-﻿@inherits LayoutComponentBase
+﻿@using Microsoft.AspNetCore.Components.Sections
+@inherits LayoutComponentBase
 
+<HeadContent>
+    <SectionOutlet SectionName="HeadContentFromPage" />
+</HeadContent>
 @Body
